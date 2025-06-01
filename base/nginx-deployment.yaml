@@ -1,0 +1,22 @@
+# -----------------------
+# Deployment: nginx
+# -----------------------
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-name-1  # Nombre del deployment
+spec:
+  replicas: 1  # Número de pods a levantar
+  selector:
+    matchLabels:
+      app: template-deploy  # Etiqueta usada para asociar pods con el deployment
+  template:
+    metadata:
+      labels:
+        app: template-deploy  # Etiqueta necesaria para que el Service encuentre este pod
+    spec:
+      containers:
+      - name: nginx
+        image: nginx  # Imagen del contenedor
+        ports:
+        - containerPort: 80  # Puerto donde escucha nginx dentro del contenedor

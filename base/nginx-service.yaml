@@ -1,0 +1,15 @@
+# -----------------------
+# Service: NodePort
+# -----------------------
+apiVersion: v1
+kind: Service
+metadata:
+  name: deploy-name-1  # Nombre del servicio (puedes acceder con minikube service nginx)
+spec:
+  type: NodePort  # Expone el servicio hacia fuera del clúster
+  selector:
+    app: template-deploy  # Selecciona los pods que tienen esta etiqueta
+  ports:
+  - port: 80  # Puerto dentro del clúster (interno)
+    targetPort: 80  # Puerto del contenedor
+    nodePort: 30080  # Puerto accesible desde el host (http://localhost:30080 con túnel)
