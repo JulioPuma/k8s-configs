@@ -4,14 +4,15 @@ Repositorio que contiene las plantillas de los manifiestos para levantar los rec
 ## kubectl commands
 command to exec a yaml manifest
 ```
+kubectl apply -f <directorio o archivo>
 kubectl apply -f ./nginx-deployment.yaml
 ```
 
 command to exec a yaml kustomization
 ```
+kubectl apply -k <directorio del kustomization>
 kubectl apply -k ./
 ```
-
 
 ## Manual commands
 
@@ -20,12 +21,17 @@ Crear un deployment:
 kubectl create deployment <nombre> --image=nginx
 ```
 
-Exponer el servicio:
+Exponer el deployment, esto creara el servicio:
 ```
 kubectl expose deployment <nombre> --type=NodePort --port=80
 ```
 --type=NodePort: expone el servicio fuera del clúster en un puerto aleatorio entre 30000–32767.
 --port=80: indica el puerto del contenedor (donde escucha nginx dentro del pod).
+
+Ver puerto asignado:
+```
+kubectl get service <nombre-del-servicio>
+```
 
 ## minikube cluster
 
@@ -42,11 +48,6 @@ minikube ip
 Dashboard
 ```
 minikube dashboard
-```
-
-Ver puerto asignado:
-```
-kubectl get service <nombre-del-servicio>
 ```
 
 Si el cluster esta en tu pc local, podras visualizar el servicio en:
